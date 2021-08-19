@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="방명록 쓰기"
+        app:titleTextColor="#fff" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +30,7 @@
             android:textSize="50px" />
 
         <EditText
+            android:id="@+id/edit_name"
             android:layout_width="820px"
             android:layout_height="120px"
             android:layout_marginTop="30px"
@@ -42,6 +52,7 @@
             android:textSize="50px" />
 
         <EditText
+            android:id="@+id/edit_password"
             android:layout_width="820px"
             android:layout_height="120px"
             android:layout_marginTop="30px"
@@ -56,6 +67,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/edit_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30px"
@@ -65,6 +77,7 @@
             android:lines="4" />
 
         <Button
+            android:id="@+id/btn_write"
             android:layout_width="match_parent"
             android:layout_height="130px"
             android:layout_marginLeft="30px"
