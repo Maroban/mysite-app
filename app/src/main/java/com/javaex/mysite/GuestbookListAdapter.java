@@ -24,7 +24,7 @@ public class GuestbookListAdapter extends ArrayAdapter<GuestbookVo> {
         super(context, resource, items);
     }
 
-    // getView:  ListView에서 하나의 row로 사용될 실제 view를 리턴한다.
+    /*** getView:  ListView에서 하나의 row로 사용될 실제 view를 리턴한다. ***/
     // 처음 화면에 나오는 리스트와 여유분 1~2개까지만 만들고, 나머지 리스트는 앞에 만들었던 것을 재사용한다.
     @Override
     public View getView(int position, View view, ViewGroup parent) {
@@ -45,15 +45,15 @@ public class GuestbookListAdapter extends ArrayAdapter<GuestbookVo> {
         txt_reg_date = view.findViewById(R.id.txt_reg_date);
         txt_content = view.findViewById(R.id.txt_content);
 
+
+        /*** getItem: 특정 position에 위치한 data들을 얻어온다. ***/
         // 데이터 가져오기(1개의 데이터)
-        // getItem: 특정 position에 위치한 data들을 얻어온다.
         GuestbookVo guestbookVo = super.getItem(position);
 
         txt_no.setText("" + guestbookVo.getNo());
         txt_name.setText(guestbookVo.getName());
         txt_reg_date.setText(guestbookVo.getReg_date());
         txt_content.setText(guestbookVo.getContent());
-
 
         return view;
     }
