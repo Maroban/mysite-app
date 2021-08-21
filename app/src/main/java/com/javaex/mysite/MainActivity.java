@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             // 서버에 연결 후 요청을 한다.
             try {
                 // url 생성
-                URL url = new URL("http://58.234.223.146:8088/mysite5/api/guestbook/write2");
+                URL url = new URL("http://58.234.223.208:8088/mysite5/api/guestbook/write2");
 
                 // url 연결
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();

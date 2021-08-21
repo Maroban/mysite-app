@@ -40,7 +40,7 @@ public class ListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*** 자바 객체화 ***/
-        ListView listView_guestbook = (ListView) findViewById(R.id.listView_guestbook);
+        listView_guestbook = (ListView) findViewById(R.id.listView_guestbook);
 
         /*** 스레드 실행(ListAsyncTask 실행) ***/
         ListAsyncTask listAsyncTask = new ListAsyncTask();
@@ -111,7 +111,6 @@ public class ListActivity extends AppCompatActivity {
 
         @Override
         protected List<GuestbookVo> doInBackground(Void... voids) {
-
             List<GuestbookVo> gList = null;
 
             // 서버에 연결 후 요청을 한다.
@@ -143,8 +142,6 @@ public class ListActivity extends AppCompatActivity {
                 // 응답코드 200이 정상
                 int resCode = conn.getResponseCode();
 
-                Log.d("Study", "" + resCode);
-
                 if (resCode == 200) {
                     // Stream을 통해 통신하며, 데이터 형식은 json으로 받는다.
                     InputStream is = conn.getInputStream();
@@ -163,8 +160,7 @@ public class ListActivity extends AppCompatActivity {
                     }
 
                     Gson gson = new Gson();
-                    gList = gson.fromJson(jsonData, new TypeToken<List<GuestbookVo>>() {
-                    }.getType());
+                    gList = gson.fromJson(jsonData, new TypeToken<List<GuestbookVo>>(){}.getType());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -183,9 +179,6 @@ public class ListActivity extends AppCompatActivity {
             Log.d("Study", "onPostExecute");
             Log.d("Study", "size --> " + gList.size());
             Log.d("Study", "index(0).name --> " + gList.get(0).getName());
-
-            /*** 자바 객체화 ***/
-            ListView listView_guestbook = (ListView) findViewById(R.id.listView_guestbook);
 
             /*** Adapter 생성 ***/
             GuestbookListAdapter guestbookListAdapter = new GuestbookListAdapter(getApplicationContext(), R.id.listView_guestbook, gList);
