@@ -47,13 +47,7 @@ public class ListActivity extends AppCompatActivity {
         listAsyncTask.execute();
 
         /*** 서버로부터 데이터 가져오기 => 가상 ***/
-        List<GuestbookVo> gList = getListFromServer();
-
-        /*** Adapter 생성 ***/
-        GuestbookListAdapter guestbookListAdapter = new GuestbookListAdapter(getApplicationContext(), R.id.listView_guestbook, gList);
-
-        /*** listView 안에 Adapter 세팅 ***/
-        listView_guestbook.setAdapter(guestbookListAdapter);
+        // List<GuestbookVo> gList = getListFromServer();
 
         /*** 클릭 이벤트 ***/
         listView_guestbook.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -88,6 +82,7 @@ public class ListActivity extends AppCompatActivity {
             guestbookVo.setReg_date("2021-08-19 -" + i);
 
             gList.add(guestbookVo);
+
         }
         return gList;
     }
@@ -122,7 +117,7 @@ public class ListActivity extends AppCompatActivity {
             // 서버에 연결 후 요청을 한다.
             try {
                 //url 생성
-                URL url = new URL("http://58.234.223.146:8088/mysite5/api/guestbook/list");
+                URL url = new URL("http://58.234.223.208:8088/mysite5/api/guestbook/list");
 
                 //url 연결
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -185,8 +180,18 @@ public class ListActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<GuestbookVo> gList) {
+            Log.d("Study", "onPostExecute");
+            Log.d("Study", "size --> " + gList.size());
+            Log.d("Study", "index(0).name --> " + gList.get(0).getName());
 
-            Log.d("Study", "" + gList.size());
+            /*** 자바 객체화 ***/
+            ListView listView_guestbook = (ListView) findViewById(R.id.listView_guestbook);
+
+            /*** Adapter 생성 ***/
+            GuestbookListAdapter guestbookListAdapter = new GuestbookListAdapter(getApplicationContext(), R.id.listView_guestbook, gList);
+
+            /*** listView 안에 Adapter 세팅 ***/
+            listView_guestbook.setAdapter(guestbookListAdapter);
 
             super.onPostExecute(gList);
         }

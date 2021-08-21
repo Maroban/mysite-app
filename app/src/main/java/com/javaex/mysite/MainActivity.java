@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 GuestbookVo guestbookVo = new GuestbookVo(name, password, content);
                 Log.d("Study", guestbookVo.toString());
 
+                /*** 리스트 액티비티로 전환 ***/
+                startActivity(new Intent(MainActivity.this, ListActivity.class));
+
                 /*** 스레드 실행(WriteAsyncTask class 실행) ***/
                 WriteAsyncTask writeAsyncTask = new WriteAsyncTask();
                 writeAsyncTask.execute(guestbookVo);
